@@ -11,8 +11,6 @@ url = 'https://www.google.com'
 driver = webdriver.Chrome()
 driver.maximize_window()
 
-driver.implicitly_wait(10)
-
 driver.get(url)
 time.sleep(1)
 
@@ -27,9 +25,11 @@ search_bar = driver.find_element(By.XPATH,search_bar_path)
 
 search_bar.send_keys("machine learning")
 
-time.sleep(1)
+wait = WebDriverWait(driver,20)
+wait.until(EC.element_to_be_clickable((By.XPATH,'/html/body/div[2]/div[4]/form/div[1]/div[1]/div[3]/center/input[1]')))
 
 search_bar.send_keys(Keys.ENTER)
-time.sleep(2)
 
+
+time.sleep(2)
 driver.quit()
